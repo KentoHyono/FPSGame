@@ -360,13 +360,18 @@
 "Assets/Scripts/Ball.cs"
 "Assets/Scripts/FPSInput.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/Laser.cs"
 "Assets/Scripts/MouseLook.cs"
 "Assets/Scripts/Paddle.cs"
+"Assets/Scripts/PlayerCharacter.cs"
+"Assets/Scripts/PlayerContoller.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/PlayerMovement2.cs"
 "Assets/Scripts/RayShooter.cs"
 "Assets/Scripts/ReactiveTarget.cs"
+"Assets/Scripts/SceneContoller.cs"
 "Assets/Scripts/UIManager.cs"
+"Assets/Scripts/WanderingAI.cs"
 -langversion:9.0
 
 /deterministic
