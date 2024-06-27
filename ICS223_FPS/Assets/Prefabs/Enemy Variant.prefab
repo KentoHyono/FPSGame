@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5717370821310611589, guid: d079cd0e6137a44b58864c3a91ad119a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c427c47126ce0de489f50e8fceedffd1, type: 2}
+    - target: {fileID: 5717370821310611589, guid: d079cd0e6137a44b58864c3a91ad119a, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -120,4 +128,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserbeamPrefab: {fileID: 1989153238807131821, guid: 8c0461b0c9e5e9644b11a536aa480e1f, type: 3}
   fireRate: 2
-  enemySpeed: 3
+  enemySpeed: 1.75

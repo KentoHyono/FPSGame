@@ -11,7 +11,7 @@ public class WanderingAI : MonoBehaviour
     public float fireRate = 2.0f;
     private float nextFire = 0.0f;
 
-    [SerializeField] private float enemySpeed = 3.0f;
+    [SerializeField] private float enemySpeed =3.0f;
     private float obstacleRange = 5.0f;
     private float sphereRadius = 0.75f;
     private EnemyStates state;

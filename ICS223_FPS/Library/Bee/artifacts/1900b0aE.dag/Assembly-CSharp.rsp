@@ -372,6 +372,7 @@
 "Assets/Scripts/SceneContoller.cs"
 "Assets/Scripts/UIManager.cs"
 "Assets/Scripts/WanderingAI.cs"
+"Assets/Scripts/WanderingIguana.cs"
 -langversion:9.0
 
 /deterministic
