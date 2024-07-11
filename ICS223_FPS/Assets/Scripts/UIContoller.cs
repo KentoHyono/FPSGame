@@ -11,6 +11,7 @@ public class UIContoller : MonoBehaviour
     [SerializeField] private Image crossHair;
     [SerializeField] private OptionPopup optionsPopup;
     [SerializeField] private SettingPopup settingPopup;
+    [SerializeField] private GameOverPopup gameOverPopup;
 
     private int score = 0;
     private int popupsActive = 0;
@@ -98,5 +99,10 @@ public class UIContoller : MonoBehaviour
     public void updateScore(int newScore)
     {
         scoreValue.text = newScore.ToString();
+    }
+
+    public void ShowGameOverPopup()
+    {
+        gameOverPopup.Open();
     }
 }

@@ -19,15 +19,36 @@ public class PlayerCharacter : MonoBehaviour
 
     }
 
+    private void Awake()
+    {
+        Messenger<int>.AddListener(GameEvent.PICKUP_HEALTH, this.OnPickupHealth);
+    }
+
+    private void OnDestroy()
+    {
+        Messenger<int>.RemoveListener(GameEvent.PICKUP_HEALTH, this.OnPickupHealth);
+    }
+
     public void Hit()
     {
         health -= 1;
         Debug.Log("Health: " + health);
-        if (health == 0)
+        if (health <= 0)
         {
-            Debug.Break();
+            Messenger.Broadcast(GameEvent.PLAYER_DEAD);
         }
 
         Messenger<float>.Broadcast(GameEvent.HEALTH_CHANGED, (float) health / maxHealth);
     }
-}
+
+    private void OnPickupHealth(int healthAdded)
+    {
+        health += healthAdded;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+
+        Messenger<float>.Broadcast(GameEvent.HEALTH_CHANGED, (float)health / maxHealth);
+    } 
+} 

@@ -1,6 +1,7 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneContoller : MonoBehaviour
 {
@@ -29,7 +30,8 @@ public class SceneContoller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < enemyNum; i ++) {
+        for (int i = 0; i < enemyNum; i++)
+        {
             if (enemies[i] == null)
             {
                 enemies[i] = Instantiate(enemyPrefab) as GameObject;
@@ -45,12 +47,16 @@ public class SceneContoller : MonoBehaviour
     private void Awake()
     {
         Messenger.AddListener(GameEvent.ENEMY_DEAD, OnEnemyDead);
+        Messenger.AddListener(GameEvent.PLAYER_DEAD, OnPlayerDead);
+        Messenger.AddListener(GameEvent.RESTART_GAME, OnRestartGame);
         Messenger<int>.AddListener(GameEvent.DIFFICULTY_CHANGED, OnDifficultyChanged);
     }
 
     private void OnDestroy()
     {
         Messenger.RemoveListener(GameEvent.ENEMY_DEAD, OnEnemyDead);
+        Messenger.RemoveListener(GameEvent.PLAYER_DEAD, OnPlayerDead);
+        Messenger.RemoveListener(GameEvent.RESTART_GAME, OnRestartGame);
         Messenger<int>.RemoveListener(GameEvent.DIFFICULTY_CHANGED, OnDifficultyChanged);
     }
 
@@ -85,5 +91,15 @@ public class SceneContoller : MonoBehaviour
     public int GetDifficulty()
     {
         return PlayerPrefs.GetInt("difficulty", 1);
+    }
+
+    private void OnPlayerDead()
+    {
+        ui.ShowGameOverPopup();
+    }
+
+    public void OnRestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }
