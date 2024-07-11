@@ -4556,10 +4556,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: -597008284, guid: 7146f89077ead2542bf1ad7bca470bdc, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -13961,8 +13961,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 1
-  sensitibityHoriz: 9
-  sensitibityVert: 9
+  sensitibityHoriz: 3
+  sensitibityVert: 3
   minVert: -45
   maxVert: 45
 --- !u!114 &1859695533
@@ -13978,7 +13978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 9
-  cc: {fileID: 0}
+  cc: {fileID: 1859695528}
 --- !u!114 &1859695534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13991,6 +13991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02772d23eb35e7249a33db7778370cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
 --- !u!1001 &1904393408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15505,6 +15506,7 @@ MonoBehaviour:
   iguanaPrefab: {fileID: 141256, guid: b4806bcfd71324778b360c0299195b34, type: 3}
   iguanaNum: 10
   iguanaSpawnPt: {fileID: 886437386}
+  ui: {fileID: 1218716377}
 --- !u!4 &2113461250
 Transform:
   m_ObjectHideFlags: 0

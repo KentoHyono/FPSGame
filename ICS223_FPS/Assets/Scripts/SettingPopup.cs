@@ -1,10 +1,11 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingPopup : MonoBehaviour
+public class SettingPopup : BasePopup
 {
     [SerializeField] TextMeshProUGUI difficultyValue;
     [SerializeField] Slider difficultySlider;
@@ -14,22 +15,11 @@ public class SettingPopup : MonoBehaviour
     {
         difficultySlider.value = PlayerPrefs.GetInt("difficulty", 1);
     }
-    public void Open()
-    {
-        gameObject.SetActive(true);
-    }
-    public void Close()
-    {
-        gameObject.SetActive(false);
-    }
-    public bool IsActive()
-    {
-        return gameObject.activeSelf;
-    }
 
     public void OnOKButton()
     {
         PlayerPrefs.SetInt("difficulty", (int)difficultySlider.value);
+        Messenger<int>.Broadcast(GameEvent.DIFFICULTY_CHANGED, (int)difficultySlider.value);
         Close();
         optionPopup.Open();
     }

@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
-public class MouseLook : MonoBehaviour
+public class MouseLook : ActiveDuringGameplay
 {
     // enum to set avlues by name instead of number.
     // makes code more readable!
@@ -15,18 +17,13 @@ public class MouseLook : MonoBehaviour
 
     // public class-scope variable so it shows up in Inspector
     public RotationAxes axes = RotationAxes.MouseXAndY;
-    public float sensitibityHoriz = 9.0f;
-    public float sensitibityVert = 9.0f;
+    public float sensitibityHoriz = 7.0f;
+    public float sensitibityVert = 7.0f;
 
     public float minVert = -45.0f;
     public float maxVert = 45.0f;
 
     private float rotationX = 0.0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

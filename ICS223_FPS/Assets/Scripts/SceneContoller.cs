@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,10 @@ public class SceneContoller : MonoBehaviour
     [SerializeField] private GameObject iguanaPrefab;
     [SerializeField] private int iguanaNum = 10;
     [SerializeField] private Transform iguanaSpawnPt;
-    
+
+    [SerializeField] private UIContoller ui;
+    private int score = 0;
+
     private Vector3 spawnPoint = new Vector3(0, 0, 5);
     private GameObject[] enemies;
     private GameObject[] iguanas;
@@ -31,9 +34,39 @@ public class SceneContoller : MonoBehaviour
             {
                 enemies[i] = Instantiate(enemyPrefab) as GameObject;
                 enemies[i].transform.position = spawnPoint;
+                WanderingAI ai = enemies[i].GetComponent<WanderingAI>();
+                ai.SetDifficulty(GetDifficulty());
                 float angle = Random.Range(0, 360);
                 enemies[i].transform.Rotate(0, angle, 0);
             }
+        }
+    }
+
+    private void Awake()
+    {
+        Messenger.AddListener(GameEvent.ENEMY_DEAD, OnEnemyDead);
+        Messenger<int>.AddListener(GameEvent.DIFFICULTY_CHANGED, OnDifficultyChanged);
+    }
+
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.ENEMY_DEAD, OnEnemyDead);
+        Messenger<int>.RemoveListener(GameEvent.DIFFICULTY_CHANGED, OnDifficultyChanged);
+    }
+
+    private void OnEnemyDead()
+    {
+        score++;
+        ui.updateScore(score);
+    }
+
+    private void OnDifficultyChanged(int newDifficulty)
+    {
+        Debug.Log("Scene.OnDifficultyChanged(" + newDifficulty + ")");
+        for (int i = 0; i < enemies.Length; i ++)
+        {
+            WanderingAI ai = enemies[i].GetComponent <WanderingAI>();
+            ai.SetDifficulty(newDifficulty);
         }
     }
 
@@ -47,5 +80,10 @@ public class SceneContoller : MonoBehaviour
             iguanas[i].transform.Rotate(0, angle, 0);
 
         }
+    }
+
+    public int GetDifficulty()
+    {
+        return PlayerPrefs.GetInt("difficulty", 1);
     }
 }

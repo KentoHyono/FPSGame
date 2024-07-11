@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
+    [SerializeField] private int maxHealth;
     private int health;
     // Start is called before the first frame update
     void Start()
     {
-        health = 5;
+        maxHealth = 5;
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -25,5 +27,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             Debug.Break();
         }
+
+        Messenger<float>.Broadcast(GameEvent.HEALTH_CHANGED, (float) health / maxHealth);
     }
 }

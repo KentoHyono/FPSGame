@@ -11,7 +11,10 @@ public class WanderingAI : MonoBehaviour
     public float fireRate = 2.0f;
     private float nextFire = 0.0f;
 
-    [SerializeField] private float enemySpeed =3.0f;
+    [SerializeField] private float enemySpeed = 3.0f;
+    private float baseSpeed = 0.25f;
+    float difficultySpeedDelta = 0.3f; // The change in speed per level of difficulty
+
     private float obstacleRange = 5.0f;
     private float sphereRadius = 0.75f;
     private EnemyStates state;
@@ -55,6 +58,12 @@ public class WanderingAI : MonoBehaviour
             }
         }
     }
+
+    public void SetDifficulty(int newDifficulty)
+    {
+        enemySpeed = baseSpeed + (newDifficulty * difficultySpeedDelta);
+    }
+    
 
     private void OnDrawGizmosSelected()
     {
